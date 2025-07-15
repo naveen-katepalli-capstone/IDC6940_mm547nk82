@@ -1,8 +1,8 @@
 ---
 title: "Clustering Traffic Accidents Using K-Means Clustering"
 subtitle: "This is a Report Template Quarto"
-author: "Naveen Katepalli
-        Mrinal Mandapaka
+author: "Naveen Katepalli,
+        Mrinal Mandapaka,
         Adiba Khan"
 date: '`r Sys.Date()`'
 format:
