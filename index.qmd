@@ -100,35 +100,53 @@ K-Means struggles with random centroid initialization, which may lead to inconsi
 
 By identifying accident hotspots and patterns, this project supports transportation authorities in prioritizing interventions, such as enhanced lighting or road redesign, to improve safety (Road accident prediction and model interpretation using a hybrid K-means and random forest algorithm approach, Discover Applied Sciences (2020)). The findings align with studies like those in London and Medellín, offering data-driven solutions to reduce traffic accidents (Kernel density estimation and K-means clustering to profile road accident hotspots, ScienceDirect (2007); Modelling road traffic collisions using clustered zones based on Foursquare data in Medellín, ScienceDirect (2020)).
 
-
-
 ## Methods
+The approach to K-Means Clustering for this capstone project involves preparing the data, selecting relevant variables, determining the ideal number of clusters, executing the clustering process, and analyzing the resulting groups to identify traffic accident patterns.
 
--   Detail the models or algorithms used.
+### Data Preparation
 
--   Justify your choices based on the problem and data.
+Data preparation begins by removing categorical variables (e.g., vehicle type), eliminating outliers (e.g., incorrect coordinates), and applying feature scaling (e.g., normalizing location or time data) to ensure consistency (Raykov et al. 2016).
 
-*The common non-parametric regression model is*
-$Y_i = m(X_i) + \varepsilon_i$*, where* $Y_i$ *can be defined as the sum
-of the regression function value* $m(x)$ *for* $X_i$*. Here* $m(x)$ *is
-unknown and* $\varepsilon_i$ *some errors. With the help of this
-definition, we can create the estimation for local averaging i.e.*
-$m(x)$ *can be estimated with the product of* $Y_i$ *average and* $X_i$
-*is near to* $x$*. In other words, this means that we are discovering
-the line through the data points with the help of surrounding data
-points. The estimation formula is printed below [@R-base]:*
+### Variable Selection
 
-$$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$$W_n(x)$ *is the sum of weights that belongs to all real numbers.
-Weights are positive numbers and small if* $X_i$ *is far from* $x$*.*
+Key variables are chosen, such as accident coordinates, time, weather, and severity, to highlight factors influencing traffic accident hotspots (A data mining framework to analyze road accident data, Journal of Big Data (2015)).
+
+### Optimal Cluster Determination
+
+The optimal number of clusters is assessed using three techniques:
+
+-   Silhouette Coefficient: Evaluates how well each accident fits its cluster compared to others, with scores from -1 to 1 (1 indicating a good fit). It is calculated as (Shi et al. 2021):
+$$S = \frac{b - a}{\max(a, b)}$$
+where a is the average intra-cluster distance, and b is the minimum average distance to other clusters.
+
+-   Elbow Method: Plots within-cluster sum of squares (WCSS) against cluster numbers, selecting the point where the decrease rate slows. WCSS is defined as (Shi et al. 2021): 
+$$WCSS = \sum_{k=1}^{K} \sum_{x \in C_k} ||x - \mu_k||^2$$
+where x is a data point, $C_k$ is the cluster, $μ_k$ is the centroid, and K is the total clusters.
+
+-   Gap Statistic: Compares within-cluster dispersion to a null reference to find the best K (Tibshirani, Walther & Hastie 2001):
+ $$Gap_n(k) = E_n^*\{\log(W_k)\} - \log(W_k)$$
+ 
+
+ where $E_n$ is the expected dispersion, n is sample size, and $W_k$ is within-cluster sum of squares.
+
+### Clustering Process
+K-Means Clustering is an iterative procedure (Fahlevi et al. 2020):
+
+-   Set the number of clusters.
+
+-   Choose initial centroids randomly.
+
+-   Assign data points to the nearest centroid using Euclidean distance: 
+$$d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
+
+where x and y are points (Ultsch & Lötsch 2022).
+
+-   Recalculate centroids as the mean of assigned points.
+
+-   Repeat until centroids stabilize.
 
 
-*Another equation:*
 
-$$
-y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
-$$
 
 ## Analysis and Results
 
