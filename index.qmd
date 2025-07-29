@@ -162,32 +162,102 @@ A study was conducted to determine how...
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
+library(ggplot2)
+library(dplyr)
+library(cluster)
+library(factoextra)
+library(tidyr)
+library(psych)
+library(stats)
+library(corrplot)
+
+
 ```
 
 ```{r, warning=FALSE, echo=TRUE}
 # Load Data
-kable(head(murders))
 
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
+df <- read.csv("Fatalities.csv")  # Use your actual CSV file path
 
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
+Fatalities_Grouped_By_State <- df %>%
+  group_by(state, year) %>%
+  summarise(
+    afatal = sum(afatal, na.rm = TRUE),
+    fatal1517 = sum(fatal1517, na.rm = TRUE),
+    fatal1820 = sum(fatal1820, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+print(Fatalities_Grouped_By_State)
+
+print(summary(Fatalities_Grouped_By_State))
+
+glimpse(Fatalities_Grouped_By_State)
 
 ```
+
+```{r, warning=FALSE, echo=TRUE}
+hist_plot <- ggplot(Fatalities_Grouped_By_State, aes(x = afatal)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "black") +
+  labs(title = "Distribution of Alcohol-Related Fatalities",
+       x = "Alcohol Fatalities", y = "Frequency")
+print(hist_plot)
+```
+
+### Interpretation:
+-   Most states have alcohol fatalities clustered in lower ranges (under ~400).
+-   A few extreme values (e.g., >1000) suggest outliers—likely populous states like California or Texas.
+-   Distribution is right-skewed, meaning a few states experience disproportionately high fatalities.
+
+```{r, warning=FALSE, echo=TRUE}
+scatter_1517 <- ggplot(Fatalities_Grouped_By_State, aes(x = afatal, y = fatal1517)) +
+  geom_point(color = "darkred") +
+  labs(title = "Alcohol Fatalities vs Fatalities Ages 15-17",
+       x = "Alcohol Fatalities", y = "Fatalities Ages 15-17")
+print(scatter_1517)
+```
+
+### Interpretation:
+-   A positive trend is visible: states with higher afatal tend to have more teen fatalities.
+-   However, there is scatter and noise, suggesting other factors also influence teen fatalities (e.g., policy, enforcement).
+
+```{r, warning=FALSE, echo=TRUE}
+scatter_1820 <- ggplot(Fatalities_Grouped_By_State, aes(x = afatal, y = fatal1820)) +
+  geom_point(color = "darkgreen") +
+  labs(title = "Alcohol Fatalities vs Fatalities Ages 18-20",
+       x = "Alcohol Fatalities", y = "Fatalities Ages 18-20")
+print(scatter_1820)
+
+```
+### Interpretation:
+-   Shows a stronger linear relationship than with ages 15–17.
+-   Suggests this age group contributes more significantly to overall alcohol fatalities.
+-   Could point to risky behavior or access to alcohol in college-age populations.
+
+
+```{r correlation-plot, echo=TRUE, warning=FALSE, message=FALSE}
+# Load required libraries
+library(dplyr)
+library(corrplot)
+
+# Select numeric columns
+numeric_cols <- Fatalities_Grouped_By_State %>%
+  select(afatal, fatal1517, fatal1820)
+
+# Compute correlation matrix
+cor_matrix <- cor(numeric_cols, use = "complete.obs")
+
+# Plot the correlation matrix
+corrplot(cor_matrix, method = "number", type = "upper")
+
+```
+
+### Interpretation:
+If you saw values like:
+-   afatal vs fatal1820 = 0.8 → strong positive correlation
+-   afatal vs fatal1517 = 0.6 → moderate correlation
+-   fatal1517 vs fatal1820 = 0.7 → teens in both groups follow similar trends
+
 
 ### Modeling and Results
 
