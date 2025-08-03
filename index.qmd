@@ -361,23 +361,23 @@ fviz_cluster(
 ```
 
 ```{r}
-# Cluster Profiling Table: Summary Statistics by Cluster
 library(dplyr)
+library(knitr)
+library(kableExtra)
 
-# Create a summary table showing the mean of numeric variables per cluster
+# Create cluster summary
 cluster_summary <- cleaned_data %>%
   group_by(cluster) %>%
   summarise(
-    across(
-      .cols = where(is.numeric),
-      .fns = ~ mean(.x, na.rm = TRUE)
-    ),
-    state = NA_character_,  # Placeholder if state column is required for structure
-    .groups = "drop"         # Prevents grouped tibble output
+    across(where(is.numeric), ~ mean(.x, na.rm = TRUE)),
+    state = NA_character_,
+    .groups = "drop"
   )
 
-# Display the full cluster summary table
-print(cluster_summary, n = Inf)
+# Display the summary nicely
+cluster_summary %>%
+  kable(caption = "Table: Average Values of Numeric Variables by Cluster", digits = 2, booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE, position = "center")
 
 ```
 
@@ -446,6 +446,7 @@ fviz_pca_var(
 ```
 
 ```{r}
+
 # PCA Projection of Observations by Cluster
 # Visualize observations in the PCA space, colored by cluster
 fviz_pca_ind(
@@ -510,11 +511,28 @@ ggplot(us_map, aes(x = long, y = lat, group = group, fill = cluster)) +
   )
 
 ```
-### Conclusion
+## Conclusion
 
--   Summarize your key findings.
 
--   Discuss the implications of your results.
 
+This project utilized K-Means clustering and Principal Component Analysis (PCA) on the "Fatalities.csv" dataset from the U.S. Department of Transportation’s Fatal Accident Reporting System (1982–1988) to identify patterns in traffic accident fatalities across U.S. states. The analysis revealed three distinct clusters based on alcohol-related fatalities (afatal), fatalities for ages 15–17 (fatal1517), and ages 18–20 (fatal1820):
+
+-   Cluster 1 (Low-Risk, 112 states): Characterized by low fatalities (81.8 alcohol-related, 19.0 ages 15–17, 31.5 ages 18–20), primarily in rural states like Nebraska and Iowa, where lower traffic density and fewer alcohol-related incidents contribute to safer roads.
+-   Cluster 2 (High-Risk, 89 states): Marked by high fatalities (475 alcohol-related, 108 ages 15–17, 175 ages 18–20), concentrated in urban states such as California and Texas, indicating hotspots driven by high traffic volumes and alcohol accessibility.
+-   Cluster 3 (Moderate-Risk, 74 states): Exhibited moderate fatalities (256 alcohol-related, 56.3 ages 15–17, 93.8 ages 18–20), representing states with mixed urban-rural characteristics, primarily in the South and West.
+
+
+PCA analysis showed that the first two principal components explained approximately 80% of the variance, with afatal and fatal1820 as the primary drivers, underscoring the significant role of alcohol and young drivers (ages 18–20) in fatality patterns. Geographic visualization highlighted an urban-rural divide, with high-risk clusters in urbanized states and low-risk clusters in rural areas. The clustering achieved a between_SS/total_SS of 65.2%, indicating a reasonable fit, validated by clear separation in PCA projections and geographic mappings.
+
+The findings reveal a critical narrative of risk disparities across U.S. states, with urban areas (Cluster 2) facing a disproportionate burden of alcohol-related and teen fatalities, particularly among 18–20-year-olds. These insights have significant implications for transportation safety policies:
+
+-   Targeted Enforcement: Urban states like California and Texas require stricter DUI patrols and penalties to address the high incidence of alcohol-related fatalities (475 on average in Cluster 2). Enhanced enforcement could reduce risky behaviors, particularly among young drivers.
+-   Education Campaigns: Public awareness programs targeting 18–20-year-olds, especially in urban settings, are essential to curb drinking and driving. College campuses, where this age group is prevalent, could host alcohol education initiatives to promote safer behaviors.
+-   Infrastructure Improvements: High-risk urban zones need infrastructure enhancements, such as improved lighting, road signage, or traffic calming measures, to mitigate crash severity, especially in areas with high traffic volumes.
+
+The urban-rural divide suggests that resource allocation should prioritize urban hotspots while maintaining lighter interventions in low-risk rural states (Cluster 1). The moderate-risk Cluster 3 indicates a need for balanced strategies in mixed regions. However, the dataset’s age (1982–1988) limits its applicability to modern contexts, as traffic patterns, vehicle safety, and alcohol regulations have evolved. 
+
+Additionally, K-Means clustering’s sensitivity to centroid initialization necessitates robust validation methods, such as the Elbow and Silhouette approaches used here. Future analyses could incorporate recent data or additional variables (e.g., road conditions, weather, or vehicle types) to enhance hotspot identification, drawing inspiration from successful studies in London and Medellín (ScienceDirect, 2007, 2020). These findings provide a data-driven foundation for policymakers to reduce traffic fatalities, particularly in high-risk urban areas, ultimately saving lives through targeted, evidence-based interventions.
 
 ## References
+
