@@ -151,13 +151,6 @@ where x and y are points (Ultsch & Lötsch 2022).
 ## Analysis and Results
 
 ### Data Exploration and Visualization
-
--   Describe your data sources and collection process.
-
--   Present initial findings and insights through visualizations.
-
--   Highlight unexpected patterns or anomalies.
-
 A study was conducted to determine how...
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
@@ -170,8 +163,6 @@ library(tidyr)
 library(psych)
 library(stats)
 library(corrplot)
-
-
 ```
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -189,9 +180,7 @@ Fatalities_Grouped_By_State <- df %>%
   )
 
 print(Fatalities_Grouped_By_State)
-
 print(summary(Fatalities_Grouped_By_State))
-
 glimpse(Fatalities_Grouped_By_State)
 
 ```
@@ -205,8 +194,11 @@ print(hist_plot)
 ```
 
 ### Interpretation:
+
 -   Most states have alcohol fatalities clustered in lower ranges (under ~400).
+
 -   A few extreme values (e.g., >1000) suggest outliers—likely populous states like California or Texas.
+
 -   Distribution is right-skewed, meaning a few states experience disproportionately high fatalities.
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -218,7 +210,9 @@ print(scatter_1517)
 ```
 
 ### Interpretation:
+
 -   A positive trend is visible: states with higher afatal tend to have more teen fatalities.
+
 -   However, there is scatter and noise, suggesting other factors also influence teen fatalities (e.g., policy, enforcement).
 
 ```{r, warning=FALSE, echo=TRUE}
@@ -231,7 +225,9 @@ print(scatter_1820)
 ```
 ### Interpretation:
 -   Shows a stronger linear relationship than with ages 15–17.
+
 -   Suggests this age group contributes more significantly to overall alcohol fatalities.
+
 -   Could point to risky behavior or access to alcohol in college-age populations.
 
 
@@ -253,30 +249,272 @@ corrplot(cor_matrix, method = "number", type = "upper")
 ```
 
 ### Interpretation:
-If you saw values like:
 -   afatal vs fatal1820 = 0.8 → strong positive correlation
+
 -   afatal vs fatal1517 = 0.6 → moderate correlation
+
 -   fatal1517 vs fatal1820 = 0.7 → teens in both groups follow similar trends
 
 
-### Modeling and Results
+## Modeling and Results
 
--   Explain your data preprocessing and cleaning steps.
+This section details the data preprocessing, modeling approach, and key findings, weaving a narrative about how the data reveals patterns in traffic accident fatalities across U.S. states from 1982–1988. The story focuses on identifying high-risk areas and understanding the role of alcohol and young drivers in fatal crashes.
 
--   Present your key findings in a clear and concise manner.
+### Data Preprocessing and Cleaning
+To ensure robust clustering, the "Fatalities.csv" dataset was meticulously preprocessed:
 
--   Use visuals to support your claims.
+-   Variable Selection: Focused on afatal (alcohol-related fatalities), fatal1517 (fatalities ages 15–17), and fatal1820 (fatalities ages 18–20) to capture alcohol-related and teen-related accident patterns, critical for identifying high-risk hotspots.
+-   Missing Data Check: No missing or null values were found, ensuring data integrity.
 
--   **Tell a story about what the data reveals.**
+-   Outlier Removal: Outliers were identified using the interquartile range (IQR) method, removing values beyond ( Q1 - 1.5 \times IQR ) or ( Q3 + 1.5 \times IQR ) to prevent skewing cluster centroids.
+
+-   Feature Scaling: Standardized afatal, fatal1517, and fatal1820 to a mean of 0 and standard deviation of 1, as K-Means clustering relies on Euclidean distance, and unscaled data could bias results.
+
+**Tell a story about what the data reveals.**
 
 ```{r}
+# Define a function to detect outliers using the IQR method
+detect_outliers <- function(x) {
+  q1 <- quantile(x, probs = 0.25, na.rm = TRUE)
+  q3 <- quantile(x, probs = 0.75, na.rm = TRUE)
+  iqr <- q3 - q1
+  x < (q1 - 1.5 * iqr) | x > (q3 + 1.5 * iqr)
+}
+
+# Define a function to eliminate rows with outliers from specified columns
+eliminate_outliers <- function(df, cols = names(df)) {
+  for (col in cols) {
+    df <- df[!detect_outliers(df[[col]]), ]
+  }
+  return(df)
+}
+
+# Specify the columns to check for outliers
+target_columns <- c("afatal", "fatal1517", "fatal1820")
+
+# Remove rows with outliers in the target columns
+cleaned_data <- eliminate_outliers(Fatalities_Grouped_By_State, target_columns)
+
+# Scale the cleaned data for clustering or further analysis
+scaled_data <- scale(cleaned_data[, target_columns])
+
+# Visualizing Scaled Data
+boxplot(
+  scaled_data,
+  ylab = "Scaled Values",
+  main = "Boxplot of Scaled Variables (After Outlier Removal)"
+)
 
 ```
 
+
+```{r}
+# Determining Optimal Number of Clusters: Elbow Method
+library(factoextra)  # For visualizing clustering results
+
+# Apply the Elbow Method using within-cluster sum of squares (WSS)
+fviz_nbclust(
+  scaled_data,             # The scaled data prepared for clustering
+  FUNcluster = kmeans,     # Clustering method: k-means
+  method = "wss"           # WSS: within-cluster sum of squares
+) +
+  labs(
+    title = "Elbow Method for Determining Optimal Clusters",
+    x = "Number of Clusters (k)",
+    y = "Total Within-Cluster Sum of Squares"
+  )
+
+```
+
+```{r}
+# K-Means Clustering of Traffic Fatalities
+set.seed(123)
+
+# Perform K-Means clustering with 3 clusters and 25 random starts
+kmeans_result <- kmeans(
+  scaled_data,      # Scaled data
+  centers = 3,      # Number of clusters
+  nstart = 25       # Number of random initial configurations
+)
+
+# Add the cluster assignments to the cleaned dataset
+cleaned_data$cluster <- as.factor(kmeans_result$cluster)
+
+# Visualizing the Clusters
+library(factoextra)
+
+# Visualize the clusters using fviz_cluster
+fviz_cluster(
+  object = kmeans_result,          # K-means result object
+  data = scaled_data,              # Scaled data used for clustering
+  ellipse.type = "convex",         # Convex hull around clusters
+  geom = "point",                  # Points for each observation
+  palette = "jco",                 # Color palette
+  ggtheme = theme_minimal()        # Minimal ggplot theme
+) +
+  labs(
+    title = "K-Means Clustering of Traffic Fatalities",
+    x = "Principal Component 1",
+    y = "Principal Component 2"
+  )
+
+```
+
+```{r}
+# Cluster Profiling Table: Summary Statistics by Cluster
+library(dplyr)
+
+# Create a summary table showing the mean of numeric variables per cluster
+cluster_summary <- cleaned_data %>%
+  group_by(cluster) %>%
+  summarise(
+    across(
+      .cols = where(is.numeric),
+      .fns = ~ mean(.x, na.rm = TRUE)
+    ),
+    state = NA_character_,  # Placeholder if state column is required for structure
+    .groups = "drop"         # Prevents grouped tibble output
+  )
+
+# Display the full cluster summary table
+print(cluster_summary, n = Inf)
+
+```
+
+```{r}
+# ---------------------------------------------------------
+# Bar Plot: Alcohol-Related Fatalities by Cluster
+# ---------------------------------------------------------
+
+# Load required library
+library(ggplot2)
+
+# Create bar plot for average alcohol-related fatalities per cluster
+ggplot(cluster_summary, aes(x = cluster, y = afatal, fill = cluster)) +
+  geom_bar(
+    stat = "identity",
+    show.legend = FALSE  # Hides redundant legend since color = cluster
+  ) +
+  scale_fill_manual(values = c("red", "green", "blue")) +
+  labs(
+    title = "Alcohol-Related Fatalities by Cluster",
+    x = "Cluster",
+    y = "Average Alcohol-Related Fatalities"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+# Principal Component Analysis (PCA)
+# Perform PCA on the scaled data
+pca_result <- prcomp(
+  scaled_data,      # Data already scaled for clustering
+  center = TRUE,    # Center the variables
+  scale. = TRUE     # Scale the variables to unit variance
+)
+
+# Scree Plot: Variance Explained by Principal Components
+library(factoextra)
+
+# Visualize the proportion of variance explained by each principal component
+fviz_eig(pca_result) +
+  labs(
+    title = "Scree Plot of PCA Variance Explained",
+    x = "Principal Components",
+    y = "Percentage of Variance Explained"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+# PCA Variable Correlation Circle
+# Visualize how original variables contribute to the principal components
+fviz_pca_var(
+  pca_result,                       # PCA result object
+  col.var = "contrib",             # Color by contribution to PCs
+  gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),  # Gradient for contribution
+  repel = TRUE                     # Avoid label overlap
+) +
+  labs(
+    title = "PCA Variable Correlation Circle",
+    x = "Principal Component 1",
+    y = "Principal Component 2"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+# PCA Projection of Observations by Cluster
+# Visualize observations in the PCA space, colored by cluster
+fviz_pca_ind(
+  pca_result,                   # PCA result object
+  geom.ind = "point",           # Use points to represent observations
+  col.ind = cleaned_data$cluster,  # Color points by cluster assignment
+  palette = "jco",              # Use a clean and readable color palette
+  addEllipses = TRUE,           # Draw ellipses around clusters
+  legend.title = "Cluster"      # Title for legend
+) +
+  labs(
+    title = "PCA Projection of Observations by Cluster",
+    x = "Principal Component 1",
+    y = "Principal Component 2"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+# ---------------------------------------------------------
+# Geographic Distribution of Clusters
+# ---------------------------------------------------------
+
+# Create a lookup table to map state abbreviations to full state names (lowercase)
+state_lookup <- data.frame(
+  abbr = tolower(state.abb),
+  full = tolower(state.name)
+)
+
+# Add special handling for Washington, D.C., which isn't included in base R state vectors
+state_lookup <- rbind(
+  state_lookup,
+  data.frame(abbr = "dc", full = "district of columbia")
+)
+
+# Convert state abbreviations in the dataset to full state names
+cleaned_data$state <- state_lookup$full[match(tolower(cleaned_data$state), state_lookup$abbr)]
+
+# Prepare Data for Mapping -  Get U.S. map data from ggplot2
+us_map <- map_data("state")
+
+# Assign cluster values to map data based on matching state names
+us_map$cluster <- cleaned_data$cluster[match(us_map$region, cleaned_data$state)]
+us_map$cluster <- as.factor(us_map$cluster)
+
+# Plotting the U.S. Map Colored by Cluster
+library(ggplot2)
+library(maps)
+
+# Plot the map with states filled by cluster color
+ggplot(us_map, aes(x = long, y = lat, group = group, fill = cluster)) +
+  geom_polygon(color = "black", linewidth = 0.25) +
+  theme_void() +  # Clean, borderless map
+  scale_fill_manual(
+    values = c("red", "green", "blue"),
+    na.value = "white"  # States with no cluster info shown in white
+  ) +
+  labs(
+    title = "Geographic Distribution of Clusters",
+    fill = "Cluster"
+  )
+
+```
 ### Conclusion
 
 -   Summarize your key findings.
 
 -   Discuss the implications of your results.
+
 
 ## References
