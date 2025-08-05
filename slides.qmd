@@ -1,7 +1,7 @@
 ---
-title: "Present a great story for data science projects"
-subtitle: "This is a Slide Template"
-author: "Students names (Advisor: Dr. Cohen)"
+title: "Traffic Accidents Using K-Means Clustering"
+subtitle: "Captone Project"
+author: "Abida Khan, Mrinal Mandapaka, Naveen Katepalli (Advisor: Dr. Cohen)"
 date: '`r Sys.Date()`'
 format:
   revealjs
@@ -17,101 +17,108 @@ editor:
     wrap: 72
 ---
 
-::: callout-important
-**Remember:** Your goal is to make your audience understand and care
-about your findings. By crafting a compelling story, you can effectively
-communicate the value of your data science project.
+![](images/Slide1.png){width=90%}
+---
 
-Carefully read this template since it has instructions and tips to
-writing!
-
-More information about `revealjs`:
-<https://quarto.org/docs/reference/formats/presentations/revealjs.html>
-:::
-
-## Introduction  {.smaller}
-
--   Develop a storyline that captures attention and maintains interest.
-
--   Your audience is your peers
-
--   Clearly state the problem or question you're addressing.
-
--   Introduce why it is relevant needs.
-
--   Provide an overview of your approach.
-
-In kernel estimator, weight function is known as kernel function
-[@efr2008]. Cite this paper [@bro2014principal]. The GEE [@wang2014].
-The PCA [@daffertshofer2004pca]\*
-
-## Methods
-
--   Detail the models or algorithms used.
-
--   Justify your choices based on the problem and data.
+![](images/Slide2.png){width=90%}
+---
 
 
+![](images/Slide3.png){width=90%}
 
-## Data Exploration and Visualization
+---
 
--   Describe your data sources and collection process.
 
--   Present initial findings and insights through visualizations.
+![](images/Slide4.png){width=90%}
+---
 
--   Highlight unexpected patterns or anomalies.
 
-## Data Exploration and Visualization {.smaller}
+![](images/Slide5.png){width=90%}
+---
 
-A study was conducted to determine how...
 
-```{r, warning=FALSE, echo=F, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
-```
+![](images/Slide6.png){width=90%}
 
-```{r, warning=FALSE, echo=F}
-# Load Data
-#kable(head(murders))
+---
 
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
 
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
+![](images/Slide7.png){width=90%}
 
-```
+---
 
-## Modeling and Results
 
--   Explain your data preprocessing and cleaning steps.
+![](images/Slide8.png){width=90%}
+---
 
--   Present your key findings in a clear and concise manner.
 
--   Use visuals to support your claims.
+![](images/Slide9.png){width=90%}
+---
 
--   **Tell a story about what the data reveals.**
 
-```{r}
+![](images/Slide10.png){width=90%}
+---
 
-```
 
-## Conclusion
+![](images/Slide11.png){width=90%}
+---
+![](images/Slide12.png){width=90%}
 
--   Summarize your key findings.
+---
 
--   Discuss the implications of your results.
 
-## References
+![](images/Slide13.png){width=90%}
+
+---
+
+
+![](images/Slide14.png){width=90%}
+---
+
+
+![](images/Slide15.png){width=90%}
+---
+
+![](images/Slide16.png){width=90%}
+---
+
+
+![](images/Slide17.png){width=90%}
+---
+
+![](images/Slide18.png){width=90%}
+---
+
+![](images/Slide19.png){width=90%}
+---
+
+![](images/Slide20.png){width=90%}
+---
+
+![](images/Slide21.png){width=90%}
+---
+
+![](images/Slide22.png){width=90%}
+---
+
+![](images/Slide23.png){width=90%}
+---
+
+![](images/Slide24.png){width=90%}
+---
+
+![](images/Slide25.png){width=90%}
+---
+
+![](images/Slide26.png){width=90%}
+---
+![](images/Slide27.png){width=90%}
+---
+
+![](images/Slide28.png){width=90%}
+---
+
+![](images/Slide29.png){width=90%}
+
+---
+
+## Thank You!

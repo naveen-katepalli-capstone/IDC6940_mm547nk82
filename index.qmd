@@ -1,6 +1,6 @@
 ---
 title: "Clustering Traffic Accidents Using K-Means Clustering"
-subtitle: "This is a Report Template Quarto"
+subtitle: "This is a Report"
 author: "Naveen Katepalli,
         Mrinal Mandapaka,
         Adiba Khan"
@@ -22,15 +22,6 @@ editor:
 
 Slides: [slides.html](slides.html){target="_blank"} ( Go to `slides.qmd`
 to edit)
-
-::: callout-important
-**Remember:** Your goal is to make your audience understand and care
-about your findings. By crafting a compelling story, you can effectively
-communicate the value of your data science project.
-
-Carefully read this template since it has instructions and tips to
-writing!
-:::
 
 ## Introduction
 
@@ -325,6 +316,8 @@ fviz_nbclust(
   )
 
 ```
+-     The Elbow Method plot shows the within-cluster sum of squares (WCSS) decreasing as the number of clusters increases, with a noticeable "elbow" at ( K = 3 ).
+
 
 ```{r}
 # K-Means Clustering of Traffic Fatalities
@@ -359,6 +352,8 @@ fviz_cluster(
   )
 
 ```
+
+-     The visualization shows data points grouped into three clusters with convex ellipses, indicating clear separation and validating the choice of ( K = 3 ).
 
 ```{r}
 library(dplyr)
@@ -511,6 +506,11 @@ ggplot(us_map, aes(x = long, y = lat, group = group, fill = cluster)) +
   )
 
 ```
+-   The geographic map visualizes clusters across U.S. states, with each state colored by its cluster assignment (red for Cluster 1, green for Cluster 2, blue for Cluster 3).
+
+-   Cluster 1 (Low-Risk): Predominantly in rural Midwest and Great Plains states (e.g., Nebraska, Iowa), where low population density and traffic volume contribute to fewer fatalities.
+
+
 ## Conclusion
 
 This project utilized K-Means clustering and Principal Component Analysis (PCA) on the "Fatalities.csv" dataset from the U.S. Department of Transportation’s Fatal Accident Reporting System (1982–1988) to identify patterns in traffic accident fatalities across U.S. states. The analysis revealed three distinct clusters based on alcohol-related fatalities (afatal), fatalities for ages 15–17 (fatal1517), and ages 18–20 (fatal1820):
