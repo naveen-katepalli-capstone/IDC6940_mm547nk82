@@ -6,7 +6,6 @@ date: '`r Sys.Date()`'
 format:
   html:
     code-fold: true
-    self-contained: true
     link-citations: true  # <--- ADD THIS LINE INSIDE HTML FORMAT
 course: Capstone Projects in Data Science
 bibliography: references.bib
@@ -379,6 +378,14 @@ cluster_summary %>%
 
 ```
 
+
+-   The bar plot visually confirms that Cluster 2 has significantly higher alcohol-related fatalities (475) compared to Cluster 3 (256) and Cluster 1 (81.8).
+
+-   This stark contrast underscores Cluster 2 as the primary target for alcohol-related interventions, as its fatalities are nearly six times higher than Cluster 1’s, highlighting the urgency of addressing urban hotspots.
+
+-   The distinct heights of the bars reinforce the clustering results, showing clear differentiation in risk levels across the three groups.
+
+
 ```{r}
 # ---------------------------------------------------------
 # Bar Plot: Alcohol-Related Fatalities by Cluster
@@ -403,6 +410,12 @@ ggplot(cluster_summary, aes(x = cluster, y = afatal, fill = cluster)) +
 
 ```
 
+-   The bar plot visually confirms that Cluster 2 has significantly higher alcohol-related fatalities (475) compared to Cluster 3 (256) and Cluster 1 (81.8).
+
+-   This stark contrast underscores Cluster 2 as the primary target for alcohol-related interventions, as its fatalities are nearly six times higher than Cluster 1’s, highlighting the urgency of addressing urban hotspots.
+
+-   The distinct heights of the bars reinforce the clustering results, showing clear differentiation in risk levels across the three groups.
+
 ```{r}
 # Principal Component Analysis (PCA)
 # Perform PCA on the scaled data
@@ -425,6 +438,12 @@ fviz_eig(pca_result) +
   theme_minimal()
 ```
 
+-   The scree plot shows the proportion of variance explained by each principal component, with the first two components accounting for approximately 80% of the total variance.
+
+-   This indicates that afatal, fatal1517, and fatal1820 are effectively summarized by two dimensions, suggesting that alcohol-related and teen fatalities are the primary drivers of differences across states.
+
+-   The sharp drop after the second component confirms that additional components add little explanatory power, validating the use of PCA for dimensionality reduction.
+
 
 ```{r}
 # PCA Variable Correlation Circle
@@ -442,6 +461,15 @@ fviz_pca_var(
   ) +
   theme_minimal()
 ```
+
+-   The correlation circle illustrates the relationships between afatal, fatal1517, and fatal1820 in the PCA space.
+
+-   afatal and fatal1820 are closely aligned with the first principal component (PC1), indicating they contribute significantly to the primary source of variance, likely due to their strong correlation (0.8).
+
+-   fatal1517 contributes to both PC1 and PC2, suggesting it plays a secondary but notable role in differentiating states, consistent with its moderate correlation with afatal (0.6).
+
+-   The distinct positioning of variables confirms their unique contributions to the data’s structure, supporting the clustering results.
+
 
 ```{r}
 
@@ -462,6 +490,13 @@ fviz_pca_ind(
   ) +
   theme_minimal()
 ```
+
+-   The PCA projection plot shows individual state-year observations projected onto the first two principal components, colored by cluster with ellipses indicating cluster boundaries.
+
+-   Clear separation between clusters validates the K-Means results: Cluster 2 (high-risk) is distinctly separated from Cluster 1 (low-risk), with Cluster 3 (moderate-risk) occupying an intermediate position.
+
+-   This separation confirms that the clusters capture meaningful differences in fatality patterns, with Cluster 2’s position reflecting its high afatal and fatal1820 values, reinforcing the urban hotspot narrative.
+
 
 
 ```{r}
