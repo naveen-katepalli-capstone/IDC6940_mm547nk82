@@ -9,6 +9,7 @@ format:
     link-citations: true  # <--- ADD THIS LINE INSIDE HTML FORMAT
 course: Capstone Projects in Data Science
 bibliography: references.bib
+self-contained: true
 execute: 
   warning: false
   message: false
@@ -16,8 +17,6 @@ editor:
   markdown: 
     wrap: 72
 ---
-
-
 
 
 Slides: [slides.html](slides.html){target="_blank"} ( Go to `slides.qmd`
