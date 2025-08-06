@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Naveen Katepalli, Mrinal Mandapaka, Adiba Khan">
-<meta name="dcterms.date" content="2025-08-05">
+<meta name="dcterms.date" content="2025-08-06">
 
 <title>Clustering Traffic Accidents Using K-Means Clustering</title>
 <style>
@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}</style>
 
 
 <script>/*!
@@ -3467,7 +3487,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 5, 2025</p>
+      <p class="date">August 6, 2025</p>
     </div>
   </div>
   
@@ -3489,22 +3509,22 @@ window.Quarto = {
 </section>
 <section id="k-means-clustering-for-traffic-accident-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="k-means-clustering-for-traffic-accident-analysis">K-Means Clustering for Traffic Accident Analysis</h2>
-<p>K-Means Clustering, an unsupervised learning algorithm, segments traffic accident data into K clusters, ensuring incidents within a cluster share similar characteristics while differing from other clusters (Unsupervised K-Means Clustering Algorithm, Sinaga &amp; Yang, IEEE Access (2020); K-Means Clustering Algorithm: A Brief Review, Bao Chong, Francis Academic Press (2021)). The process involves:</p>
+<p>K-Means Clustering, an unsupervised learning algorithm, segments traffic accident data into K clusters, ensuring incidents within a cluster share similar characteristics while differing from other clusters <span class="citation" data-cites="bao2021kmeans">(<a href="#ref-bao2021kmeans" role="doc-biblioref">Bao 2021</a>)</span>. The process involves:</p>
 <ul>
 <li><p>Centroid Initialization: Select K initial centroids, ideally using principal component analysis (PCA) to enhance convergence (Efficient Feature Selection with Hybrid K-Means Genetic Algorithm for Text Clustering, Zubair et al., 2022 4th International Conference on Electrical, Computer &amp; Telecommunication Engineering (ICECTE) (2022)).</p></li>
 <li><p>Data Assignment: Assign each accident record to the nearest centroid based on Euclidean distance, using features like geographic coordinates, time, or weather (Implementation of K-Means Clustering for Scheduling Courses of Lecturers, Fahlevi et al., IOP Conference Series: Materials Science and Engineering (2020)).</p></li>
 <li><p>Centroid Update: Recalculate centroids as the mean of assigned points (Infected Fruit Part Detection Using K-Means Clustering Segmentation Technique, Dubey et al., International Journal of Interactive Multimedia and Artificial Intelligence (2013)).</p></li>
-<li><p>Iteration: Repeat until clusters stabilize (Classification of Aquifer Vulnerability Using K-Means Cluster Analysis, Javadi et al., Journal of Hydrology (2017)). This project uses datasets like New York City’s construction-related accidents or Indian traffic data to cluster incidents by spatial, temporal, or environmental factors, identifying high-risk zones (A data mining framework to analyze road accident data, Journal of Big Data (2015); workzone-collision-analysis/capstone, GitHub (2020)).</p></li>
+<li><p>Iteration: Repeat until clusters stabilize <span class="citation" data-cites="javadi2017classification">(<a href="#ref-javadi2017classification" role="doc-biblioref">Javadi et al. 2017</a>)</span>. This project uses datasets like New York City’s construction-related accidents or Indian traffic data to cluster incidents by spatial, temporal, or environmental factors, identifying high-risk zones <span class="citation" data-cites="workzone2020">(<a href="#ref-workzone2020" role="doc-biblioref">GitHub 2020</a>)</span>.</p></li>
 </ul>
 <p>Determining the Optimal Number of Clusters Selecting the optimal K ensures meaningful accident clusters. Methods include:</p>
 <ul>
-<li><p>Elbow Method: Plots sum of squared errors (SSE) against K, with the “elbow” indicating the optimal number of clusters (Integration K-Means Clustering Method and Elbow Method for Identification of The Best Customer Profile Cluster, Syakur et al., IOP Conference Series: Materials Science and Engineering (2018)).</p></li>
-<li><p>Silhouette Method: Evaluates cluster quality using silhouette coefficients (-1 to 1), where 1 indicates well-separated clusters, 0 suggests overlap, and -1 implies misassignment (Silhouettes: A Graphical Aid to the Interpretation and Validation of Cluster Analysis, Rousseeuw, Journal of Computational and Applied Mathematics (1987); A Quantitative Discriminant Method of Elbow Point for the Optimal Number of Clusters in Clustering Algorithm, Shi et al., EURASIP Journal on Wireless Communications and Networking (2021)). Weighted variants improve accuracy (Silhouette-Coefficient Based Weighting K-Means, Lai et al., Neural Computing and Applications (2024); Silhouette-Guided Instance-Weighted K-Means (K-Sil), Semoglou, Likas &amp; Pavlopoulos, arXiv (2025)).</p></li>
-<li><p>Gap Statistic: Compares within-cluster dispersion to a reference distribution (Estimating the Number of Clusters in a Data Set via the Gap Statistic, Tibshirani, Walther &amp; Hastie, Journal of the Royal Statistical Society: Series B (Statistical Methodology) (2001)). The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification (K-Means Clustering, Wikipedia (2025); Silhouette (Clustering), Wikipedia (2025)).</p></li>
+<li><p>Elbow Method: Plots sum of squared errors (SSE) against K, with the “elbow” indicating the optimal number of clusters <span class="citation" data-cites="syakur2018integration">(<a href="#ref-syakur2018integration" role="doc-biblioref">Syakur et al. 2018</a>)</span>.</p></li>
+<li><p>Silhouette Method: Evaluates cluster quality using silhouette coefficients (-1 to 1), where 1 indicates well-separated clusters, 0 suggests overlap, and -1 implies misassignment <span class="citation" data-cites="rousseeuw1987silhouettes">(<a href="#ref-rousseeuw1987silhouettes" role="doc-biblioref">Rousseeuw 1987</a>)</span>. Weighted variants improve accuracy <span class="citation" data-cites="lai2024silhouette">(<a href="#ref-lai2024silhouette" role="doc-biblioref">Lai et al. 2024</a>)</span>.</p></li>
+<li><p>Gap Statistic: Compares within-cluster dispersion to a reference distribution <span class="citation" data-cites="tibshirani2001estimating">(<a href="#ref-tibshirani2001estimating" role="doc-biblioref">Tibshirani, Walther, and Hastie 2001</a>)</span>. The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification (K-Means Clustering, Wikipedia (2025); Silhouette (Clustering), Wikipedia (2025)).</p></li>
 </ul>
 <section id="optimization-and-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="optimization-and-preprocessing">Optimization and Preprocessing</h3>
-<p>Large accident datasets benefit from the Canopy algorithm, which partitions data into subsets for efficient clustering (Research on K-Value Selection Method of K-Means Clustering Algorithm, Yuan &amp; Yang, Journal of Multidisciplinary Scientific Journal (2019); Clustering Analysis of Traffic Accident Dataset using Canopy K Means, IEEE Conference Publication (2020)). PCA reduces dimensionality, focusing on key features like location or road conditions (Efficient Feature Selection with Hybrid K-Means Genetic Algorithm for Text Clustering, Zubair et al., 2022 4th International Conference on Electrical, Computer &amp; Telecommunication Engineering (ICECTE) (2022)). Silhouette-weighted K-Means enhances cluster quality by prioritizing well-separated incidents (Silhouette-Coefficient Based Weighting K-Means, Lai et al., Neural Computing and Applications (2024)).</p>
+<p>Large accident datasets benefit from the Canopy algorithm, which partitions data into subsets for efficient clustering <span class="citation" data-cites="yuan2019research">(<a href="#ref-yuan2019research" role="doc-biblioref">Yuan and Yang 2019</a>)</span>. PCA reduces dimensionality, focusing on key features like location or road conditions (Efficient Feature Selection with Hybrid K-Means Genetic Algorithm for Text Clustering, Zubair et al., 2022 4th International Conference on Electrical, Computer &amp; Telecommunication Engineering (ICECTE) (2022)). Silhouette-weighted K-Means enhances cluster quality by prioritizing well-separated incidents <span class="citation" data-cites="lai2024silhouette">(<a href="#ref-lai2024silhouette" role="doc-biblioref">Lai et al. 2024</a>)</span>.</p>
 </section>
 <section id="cluster-quality-evaluation" class="level3">
 <h3 class="anchored" data-anchor-id="cluster-quality-evaluation">Cluster Quality Evaluation</h3>
@@ -3512,23 +3532,24 @@ window.Quarto = {
 </section>
 <section id="application-to-traffic-accident-hotspots" class="level3">
 <h3 class="anchored" data-anchor-id="application-to-traffic-accident-hotspots">Application to Traffic Accident Hotspots</h3>
-<p>The project clusters traffic accident data to identify hotspots and contributing factors. For example, a London study used K-Means with kernel density estimation to group accidents into five categories and 15 clusters based on environmental factors, guiding safety campaigns (Kernel density estimation and K-means clustering to profile road accident hotspots, ScienceDirect (2007)). In India, K-Modes Clustering on 11,574 accidents in Dehradun revealed patterns when combined with association rule mining (A data mining framework to analyze road accident data, Journal of Big Data (2015)). Similarly, in Medellín, Colombia, K-Means clustered zones by venue composition to analyze collision trends (Modelling road traffic collisions using clustered zones based on Foursquare data in Medellín, ScienceDirect (2020)). This project analyzes datasets like New York City’s 20,000+ construction-related accidents to identify high-risk road segments, potentially due to poor lighting or road geometry, as seen in Iranian studies (Identifying accident prone areas and factors influencing the severity of crashes using machine learning and spatial analyses, Scientific Reports (2024); workzone-collision-analysis/capstone, GitHub (2020)). Results can guide interventions like improved signage or traffic management.</p>
+<p>The project clusters traffic accident data to identify hotspots and contributing factors. For example, a London study used K-Means with kernel density estimation to group accidents into five categories and 15 clusters based on environmental factors, guiding safety campaigns (Kernel density estimation and K-means clustering to profile road accident hotspots, ScienceDirect (2007)). In India, K-Modes Clustering on 11,574 accidents in Dehradun revealed patterns when combined with association rule mining <span class="citation" data-cites="kumar2015data">(<a href="#ref-kumar2015data" role="doc-biblioref">Kumar and Toshniwal 2015</a>)</span>. Similarly, in Medellín, Colombia, K-Means clustered zones by venue composition to analyze collision trends <span class="citation" data-cites="ocampo2020modelling">(<a href="#ref-ocampo2020modelling" role="doc-biblioref">Ocampo, Alvarez, and Ospina 2020</a>)</span>. This project analyzes datasets like New York City’s 20,000+ construction-related accidents to identify high-risk road segments, potentially due to poor lighting or road geometry, as seen in Iranian studies <span class="citation" data-cites="sadeghi2024identifying">(<a href="#ref-sadeghi2024identifying" role="doc-biblioref">Sadeghi et al. 2024</a>)</span>. Results can guide interventions like improved signage or traffic management.</p>
 </section>
 </section>
 <section id="variations-of-k-means" class="level2">
 <h2 class="anchored" data-anchor-id="variations-of-k-means">Variations of K-Means</h2>
 <p>Variants enhance K-Means for accident data:</p>
 <ul>
-<li><p>Constrained K-Means: Ensures meaningful cluster sizes for hotspot analysis (Constrained K-Means Clustering and Its Application to Pattern Recognition, Usami, The Japanese Journal of Behaviormetrics (2014)).</p></li>
-<li><p>Improved K-Means: Reduces computational overhead for large datasets (Research on K-Means Clustering Algorithm: An Improved K-Means Clustering Algorithm, Na, Xumin &amp; Yong, 2010 Third International Symposium on Intelligent Information Technology and Security Informatics (2010)).</p></li>
-<li><p>Filtering Algorithm: Uses kd-trees for efficient centroid selection (An Efficient K-Means Clustering Algorithm: Analysis and Implementation, Kanungo et al., IEEE Transactions on Pattern Analysis and Machine Intelligence (2002)).</p></li>
-<li><p>Genetic-Based K-Means (GBKM): Optimizes centroids via genetic algorithms (Genetic K-Means Clustering Algorithm for Documents, Chougule et al., International Journal of Computer Applications (2015)). MapReduce K-Means: Processes large-scale accident data (MapReduce Design of K-Means Clustering Algorithm, Anchalia, Koundinya &amp; Srinath, 2013 International Conference on Information Science and Applications (ICISA) (2013)).</p></li>
-<li><p>Silhouette-Weighted K-Means: Improves hotspot detection by weighting incidents (Silhouette-Guided Instance-Weighted K-Means (K-Sil), Semoglou, Likas &amp; Pavlopoulos, arXiv (2025)). Limitations</p></li>
+<li><p>Constrained K-Means: Ensures meaningful cluster sizes for hotspot analysis <span class="citation" data-cites="usami2014constrained">(<a href="#ref-usami2014constrained" role="doc-biblioref">Usami 2014</a>)</span>.</p></li>
+<li><p>Improved K-Means: Reduces computational overhead for large datasets <span class="citation" data-cites="na2010research">(<a href="#ref-na2010research" role="doc-biblioref">Na, Xumin, and Yong 2010</a>)</span>.</p></li>
+<li><p>Filtering Algorithm: Uses kd-trees for efficient centroid selection <span class="citation" data-cites="kanungo2002efficient">(<a href="#ref-kanungo2002efficient" role="doc-biblioref">Kanungo et al. 2002</a>)</span>.</p></li>
+<li><p>Genetic-Based K-Means (GBKM): Optimizes centroids via genetic algorithms <span class="citation" data-cites="chougule2015genetic">(<a href="#ref-chougule2015genetic" role="doc-biblioref">Chougule et al. 2015</a>)</span>. MapReduce K-Means: Processes large-scale accident data <span class="citation" data-cites="anchalia2013mapreduce">(<a href="#ref-anchalia2013mapreduce" role="doc-biblioref">Anchalia, Koundinya, and Srinath 2013</a>)</span>.</p></li>
+<li><p>Silhouette-Weighted K-Means: Improves hotspot detection by weighting incidents <span class="citation" data-cites="semoglou2025silhouette">(<a href="#ref-semoglou2025silhouette" role="doc-biblioref">Semoglou, Likas, and Pavlopoulos 2025</a>)</span>. Limitations</p></li>
 </ul>
 <p>K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial (The K-Means Algorithm: A Comprehensive Survey and Performance Evaluation, Ahmed, Seraj &amp; Islam, Electronics (2020); K-Means Clustering, Wikipedia (2025)).</p>
+<p>K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial <span class="citation" data-cites="ahmed2020kmeans">(<a href="#ref-ahmed2020kmeans" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>.</p>
 <section id="project-impact" class="level3">
 <h3 class="anchored" data-anchor-id="project-impact">Project Impact</h3>
-<p>By identifying accident hotspots and patterns, this project supports transportation authorities in prioritizing interventions, such as enhanced lighting or road redesign, to improve safety (Road accident prediction and model interpretation using a hybrid K-means and random forest algorithm approach, Discover Applied Sciences (2020)). The findings align with studies like those in London and Medellín, offering data-driven solutions to reduce traffic accidents (Kernel density estimation and K-means clustering to profile road accident hotspots, ScienceDirect (2007); Modelling road traffic collisions using clustered zones based on Foursquare data in Medellín, ScienceDirect (2020)).</p>
+<p>By identifying accident hotspots and patterns, this project supports transportation authorities in prioritizing interventions, such as enhanced lighting or road redesign, to improve safety (Road accident prediction and model interpretation using a hybrid K-means and random forest algorithm approach, Discover Applied Sciences (2020)). The findings align with studies like those in London and Medellín, offering data-driven solutions to reduce traffic accidents <span class="citation" data-cites="anderson2007kernel">(<a href="#ref-anderson2007kernel" role="doc-biblioref">Anderson 2009</a>)</span>.</p>
 </section>
 </section>
 <section id="methods" class="level2">
@@ -4155,35 +4176,65 @@ $ fatal1820 &lt;int&gt; 99, 108, 103, 100, 120, 127, 105, 62, 65, 72, 56, 66, 72
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><p>Ahmed, M., Seraj, R., &amp; Islam, S. M. S. (2020). The K-means algorithm: A comprehensive survey and performance evaluation. Electronics, 9(8), 1295.</p></li>
-<li><p>Anchalia, P. P., Koundinya, A. K., &amp; Srinath, N. K. (2013). MapReduce design of K-means clustering algorithm. In 2013 International Conference on Information Science and Applications (ICISA) (pp. 1–5). IEEE.</p></li>
-<li><p>Bao, C. (2021). K-means clustering algorithm: A brief review. Francis Academic Press.</p></li>
-<li><p>Chougule, P., Thakare, A. D., Kale, P., Gole, M., &amp; Nanekar, P. (2015). Genetic K-means clustering algorithm for documents. International Journal of Computer Applications, 6(2), 1724–1727.</p></li>
-<li><p>Dubey, S. R., Dixit, P., Singh, N., &amp; Gupta, J. P. (2013). Infected fruit part detection using K-means clustering segmentation technique. International Journal of Interactive Multimedia and Artificial Intelligence.</p></li>
-<li><p>Fahlevi, M. R., Putri, D. R. D., Putri, F. A., Rahman, M., Sipahutar, L., &amp; Muhatri, M. (2020). Determination of rice quality using the K-means clustering method. In 2020 2nd International Conference on Cybernetics and Intelligent System (ICORIS) (pp. 1–6).</p></li>
-<li><p>Javadi, S., Hashemy, S. M., Mohammadi, K., Howard, K. W. F., &amp; Neshat, A. (2017). Classification of aquifer vulnerability using K-means cluster analysis. Journal of Hydrology, 549, 27–37.</p></li>
-<li><p>Kanungo, T., Mount, D. M., Netanyahu, N. S., Piatko, C. D., Silverman, R., &amp; Wu, A. Y. (2002). An efficient K-means clustering algorithm: Analysis and implementation. IEEE Transactions on Pattern Analysis and Machine Intelligence, 24(7), 881–892.</p></li>
-<li><p>Kumar, V., Chhabra, J. K., &amp; Kumar, D. (2014). Automatic cluster evolution using gravitational search algorithm and its application on image segmentation. Engineering Applications of Artificial Intelligence, 29, 93–103.</p></li>
-<li><p>Lai, D., Zhang, Y., Zhang, X., Su, Y., &amp; Bin, M. A. (2024). Silhouette-coefficient based weighting K-means. Neural Computing and Applications.</p></li>
-<li><p>Na, S., Xumin, L., &amp; Yong, G. (2010). Research on K-means clustering algorithm: An improved K-means clustering algorithm. In 2010 Third International Symposium on Intelligent Information Technology and Security Informatics (pp. 63–67). IEEE.</p></li>
-<li><p>Qabbaah, H., Sammour, G., &amp; Vanhoof, K. (2019). Using K-means clustering and data visualization for monetizing logistics data. In 2019 2nd International Conference on New Trends in Computing Sciences (ICTCS) (pp. 1–6). IEEE.</p></li>
-<li><p>Raykov, Y. P., Boukouvalas, A., Baig, F., &amp; Little, M. A. (2016). What to do when K-means clustering fails: A simple yet principled alternative algorithm. PloS One, 11(9), e0162259.</p></li>
-<li><p>Rousseeuw, P. J. (1987). Silhouettes: A graphical aid to the interpretation and validation of cluster analysis. Journal of Computational and Applied Mathematics, 20, 53–65.</p></li>
-<li><p>Semoglou, A., Likas, A., &amp; Pavlopoulos, G. A. (2025). Silhouette-guided instance-weighted K-means (K-Sil). arXiv.</p></li>
-<li><p>Shi, C., Wei, B., Wei, S., Wang, W., Liu, H., &amp; Liu, J. (2021). A quantitative discriminant method of elbow point for the optimal number of clusters in clustering algorithm. EURASIP Journal on Wireless Communications and Networking, 2021, 1–16.</p></li>
-<li><p>Sinaga, K. P., &amp; Yang, M.-S. (2020). Unsupervised K-means clustering algorithm. IEEE Access, 8, 80716–80727.</p></li>
-<li><p>Syakur, M. A., Khotimah, B. K., Rochman, E. M. S., &amp; Satoto, B. D. (2018). Integration K-means clustering method and elbow method for identification of the best customer profile cluster. In IOP Conference Series: Materials Science and Engineering (Vol. 336, p. 012017).</p></li>
-<li><p>Tibshirani, R., Walther, G., &amp; Hastie, T. (2001). Estimating the number of clusters in a data set via the gap statistic. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 63(2), 411–423.</p></li>
-<li><p>Ultsch, A., &amp; Lötsch, J. (2022). Euclidean distance-optimized data transformation for cluster analysis in biomedical data. BMC Bioinformatics, 23(1), 233.</p></li>
-<li><p>Usami, S. (2014). Constrained K-means clustering and its application to pattern recognition. The Japanese Journal of Behaviormetrics, 41(1), 25–34.</p></li>
-<li><p>Yuan, C., &amp; Yang, H. (2019). Research on K-value selection method of K-means clustering algorithm. Journal of Multidisciplinary Scientific Journal, 2(2), 226–235.</p></li>
-<li><p>Kumar, S., &amp; Toshniwal, D. (2015). A data mining framework to analyze road accident data. Journal of Big Data, 2(1), 1–22.</p></li>
-<li><p>Sadeghi, A., Farhad, H., Mohammadzadeh Moghaddam, A., &amp; Jalili Qazizadeh, M. (2024). Identifying accident prone areas and factors influencing the severity of crashes using machine learning and spatial analyses. Scientific Reports, 14(1), 15736.</p></li>
-<li><p>Anderson, T. K. (2009). Kernel density estimation and K-means clustering to profile road accident hotspots. Accident Analysis &amp; Prevention, 41(3), 359–364.</p></li>
-<li><p>Ocampo, L., Alvarez, P., &amp; Ospina, J. (2020). Modelling road traffic collisions using clustered zones based on Foursquare data in Medellín. Transportation Research Interdisciplinary Perspectives, 7, 100203.</p></li>
-</ul>
-<p><strong>GitHub. (2020). Workzone-collision-analysis/capstone. https://github.com/workzone-collision-analysis/capstone</strong></p>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-ahmed2020kmeans" class="csl-entry" role="listitem">
+Ahmed, M., R. Seraj, and S. M. S. Islam. 2020. <span>“The k-Means Algorithm: A Comprehensive Survey and Performance Evaluation.”</span> <em>Electronics</em> 9 (8): 1295.
+</div>
+<div id="ref-anchalia2013mapreduce" class="csl-entry" role="listitem">
+Anchalia, P. P., A. K. Koundinya, and N. K. Srinath. 2013. <span>“MapReduce Design of k-Means Clustering Algorithm.”</span> In <em>2013 International Conference on Information Science and Applications (ICISA)</em>, 1–5. IEEE.
+</div>
+<div id="ref-anderson2007kernel" class="csl-entry" role="listitem">
+Anderson, T. K. 2009. <span>“Kernel Density Estimation and k-Means Clustering to Profile Road Accident Hotspots.”</span> <em>Accident Analysis &amp; Prevention</em> 41 (3): 359–64.
+</div>
+<div id="ref-bao2021kmeans" class="csl-entry" role="listitem">
+Bao, C. 2021. <span>“K-Means Clustering Algorithm: A Brief Review.”</span> <em>Francis Academic Press</em>.
+</div>
+<div id="ref-chougule2015genetic" class="csl-entry" role="listitem">
+Chougule, P., A. D. Thakare, P. Kale, M. Gole, and P. Nanekar. 2015. <span>“Genetic k-Means Clustering Algorithm for Documents.”</span> <em>International Journal of Computer Applications</em> 6 (2): 1724–27.
+</div>
+<div id="ref-workzone2020" class="csl-entry" role="listitem">
+GitHub. 2020. <span>“Workzone-Collision-Analysis/Capstone.”</span> <a href="https://github.com/workzone-collision-analysis/capstone" class="uri">https://github.com/workzone-collision-analysis/capstone</a>.
+</div>
+<div id="ref-javadi2017classification" class="csl-entry" role="listitem">
+Javadi, S., S. M. Hashemy, K. Mohammadi, K. W. F. Howard, and A. Neshat. 2017. <span>“Classification of Aquifer Vulnerability Using k-Means Cluster Analysis.”</span> <em>Journal of Hydrology</em> 549: 27–37.
+</div>
+<div id="ref-kanungo2002efficient" class="csl-entry" role="listitem">
+Kanungo, T., D. M. Mount, N. S. Netanyahu, C. D. Piatko, R. Silverman, and A. Y. Wu. 2002. <span>“An Efficient k-Means Clustering Algorithm: Analysis and Implementation.”</span> <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em> 24 (7): 881–92.
+</div>
+<div id="ref-kumar2015data" class="csl-entry" role="listitem">
+Kumar, S., and D. Toshniwal. 2015. <span>“A Data Mining Framework to Analyze Road Accident Data.”</span> <em>Journal of Big Data</em> 2 (1): 1–22.
+</div>
+<div id="ref-lai2024silhouette" class="csl-entry" role="listitem">
+Lai, D., Y. Zhang, X. Zhang, Y. Su, and M. A. Bin. 2024. <span>“Silhouette-Coefficient Based Weighting k-Means.”</span> <em>Neural Computing and Applications</em>.
+</div>
+<div id="ref-na2010research" class="csl-entry" role="listitem">
+Na, S., L. Xumin, and G. Yong. 2010. <span>“Research on k-Means Clustering Algorithm: An Improved k-Means Clustering Algorithm.”</span> In <em>2010 Third International Symposium on Intelligent Information Technology and Security Informatics</em>, 63–67. IEEE.
+</div>
+<div id="ref-ocampo2020modelling" class="csl-entry" role="listitem">
+Ocampo, L., P. Alvarez, and J. Ospina. 2020. <span>“Modelling Road Traffic Collisions Using Clustered Zones Based on Foursquare Data in Medellín.”</span> <em>Transportation Research Interdisciplinary Perspectives</em> 7: 100203.
+</div>
+<div id="ref-rousseeuw1987silhouettes" class="csl-entry" role="listitem">
+Rousseeuw, P. J. 1987. <span>“Silhouettes: A Graphical Aid to the Interpretation and Validation of Cluster Analysis.”</span> <em>Journal of Computational and Applied Mathematics</em> 20: 53–65.
+</div>
+<div id="ref-sadeghi2024identifying" class="csl-entry" role="listitem">
+Sadeghi, A., H. Farhad, A. Mohammadzadeh Moghaddam, and M. Jalili Qazizadeh. 2024. <span>“Identifying Accident Prone Areas and Factors Influencing the Severity of Crashes Using Machine Learning and Spatial Analyses.”</span> <em>Scientific Reports</em> 14 (1): 15736.
+</div>
+<div id="ref-semoglou2025silhouette" class="csl-entry" role="listitem">
+Semoglou, A., A. Likas, and G. A. Pavlopoulos. 2025. <span>“Silhouette-Guided Instance-Weighted k-Means (k-Sil).”</span> <em>arXiv</em>.
+</div>
+<div id="ref-syakur2018integration" class="csl-entry" role="listitem">
+Syakur, M. A., B. K. Khotimah, E. M. S. Rochman, and B. D. Satoto. 2018. <span>“Integration k-Means Clustering Method and Elbow Method for Identification of the Best Customer Profile Cluster.”</span> In <em>IOP Conference Series: Materials Science and Engineering</em>, 336:012017.
+</div>
+<div id="ref-tibshirani2001estimating" class="csl-entry" role="listitem">
+Tibshirani, R., G. Walther, and T. Hastie. 2001. <span>“Estimating the Number of Clusters in a Data Set via the Gap Statistic.”</span> <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 63 (2): 411–23.
+</div>
+<div id="ref-usami2014constrained" class="csl-entry" role="listitem">
+Usami, S. 2014. <span>“Constrained k-Means Clustering and Its Application to Pattern Recognition.”</span> <em>The Japanese Journal of Behaviormetrics</em> 41 (1): 25–34.
+</div>
+<div id="ref-yuan2019research" class="csl-entry" role="listitem">
+Yuan, C., and H. Yang. 2019. <span>“Research on k-Value Selection Method of k-Means Clustering Algorithm.”</span> <em>Journal of Multidisciplinary Scientific Journal</em> 2 (2): 226–35.
+</div>
+</div>
 </section>
 
 </main>

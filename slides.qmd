@@ -2,7 +2,6 @@
 title: "Traffic Accidents Using K-Means Clustering"
 subtitle: "Captone Project"
 author: "Abida Khan, Mrinal Mandapaka, Naveen Katepalli (Advisor: Dr. Cohen)"
-date: '`r Sys.Date()`'
 format:
   revealjs
 course: Capstone Projects in Data Science
