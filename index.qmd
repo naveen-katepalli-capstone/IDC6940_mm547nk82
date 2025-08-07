@@ -19,8 +19,7 @@ editor:
 ---
 
 
-Slides: [slides.html](slides.html){target="_blank"} ( Go to `slides.qmd`
-to edit)
+Slides: [slides.html](slides.html){target="_blank"} 
 
 ## Introduction
 
@@ -34,13 +33,13 @@ This capstone project applies K-Means Clustering to analyze traffic accident dat
 K-Means Clustering, an unsupervised learning algorithm, segments traffic accident data into K clusters, ensuring incidents within a cluster share similar characteristics while differing from other clusters [@bao2021kmeans]. The process involves:
 
 -   Centroid Initialization: 
-Select K initial centroids, ideally using principal component analysis (PCA) to enhance convergence (Efficient Feature Selection with Hybrid K-Means Genetic Algorithm for Text Clustering, Zubair et al., 2022 4th International Conference on Electrical, Computer & Telecommunication Engineering (ICECTE) (2022)).
+Select K initial centroids, ideally using principal component analysis (PCA) to enhance convergence [@zubair2022efficient].
 
 -   Data Assignment: 
-Assign each accident record to the nearest centroid based on Euclidean distance, using features like geographic coordinates, time, or weather (Implementation of K-Means Clustering for Scheduling Courses of Lecturers, Fahlevi et al., IOP Conference Series: Materials Science and Engineering (2020)).
+Assign each accident record to the nearest centroid based on Euclidean distance, using features like geographic coordinates, time, or weather [@fahlevi2020implementation].
 
 -   Centroid Update: 
-Recalculate centroids as the mean of assigned points (Infected Fruit Part Detection Using K-Means Clustering Segmentation Technique, Dubey et al., International Journal of Interactive Multimedia and Artificial Intelligence (2013)).
+Recalculate centroids as the mean of assigned points [@dubey2013infected].
 
 -   Iteration: 
 Repeat until clusters stabilize [@javadi2017classification].
@@ -54,19 +53,21 @@ This project uses datasets like New York City’s construction-related accidents
 -   Silhouette Method: Evaluates cluster quality using silhouette coefficients (-1 to 1), where 1 indicates well-separated clusters, 0 suggests overlap, and -1 implies misassignment [@rousseeuw1987silhouettes]. Weighted variants improve accuracy [@lai2024silhouette].
 
 -   Gap Statistic: Compares within-cluster dispersion to a reference distribution [@tibshirani2001estimating].
-The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification (K-Means Clustering, Wikipedia (2025); Silhouette (Clustering), Wikipedia (2025)).
+The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification [@wikipedia2025kmeans], [@wikipedia2025silhouette].
 
 ### Optimization and Preprocessing
 
-Large accident datasets benefit from the Canopy algorithm, which partitions data into subsets for efficient clustering [@yuan2019research]. PCA reduces dimensionality, focusing on key features like location or road conditions (Efficient Feature Selection with Hybrid K-Means Genetic Algorithm for Text Clustering, Zubair et al., 2022 4th International Conference on Electrical, Computer & Telecommunication Engineering (ICECTE) (2022)). Silhouette-weighted K-Means enhances cluster quality by prioritizing well-separated incidents [@lai2024silhouette].
+-   Large accident datasets benefit from the Canopy algorithm, which partitions data into subsets for efficient clustering [@yuan2019research]. 
+-   PCA reduces dimensionality, focusing on key features like location or road conditions [@zubair2022efficient].
+-   Silhouette-weighted K-Means enhances cluster quality by prioritizing well-separated incidents [@lai2024silhouette].
 
 ### Cluster Quality Evaluation
 
-The Calinski-Harabasz index validates cluster quality, with higher values indicating well-defined accident clusters (The Clustering Quality Based on Calinski-Harabasz Index, Qabbaah, Sammour & Vanhoof, European Journal of Scientific Research (2019)).
+-   The Calinski-Harabasz index validates cluster quality, with higher values indicating well-defined accident clusters [@qabbaah2019clustering]
 
 ### Application to Traffic Accident Hotspots
 
-The project clusters traffic accident data to identify hotspots and contributing factors. For example, a London study used K-Means with kernel density estimation to group accidents into five categories and 15 clusters based on environmental factors, guiding safety campaigns (Kernel density estimation and K-means clustering to profile road accident hotspots, ScienceDirect (2007)). In India, K-Modes Clustering on 11,574 accidents in Dehradun revealed patterns when combined with association rule mining [@kumar2015data]. Similarly, in Medellín, Colombia, K-Means clustered zones by venue composition to analyze collision trends [@ocampo2020modelling]. This project analyzes datasets like New York City’s 20,000+ construction-related accidents to identify high-risk road segments, potentially due to poor lighting or road geometry, as seen in Iranian studies [@sadeghi2024identifying]. Results can guide interventions like improved signage or traffic management.
+The project clusters traffic accident data to identify hotspots and contributing factors. For example, a London study used K-Means with kernel density estimation to group accidents into five categories and 15 clusters based on environmental factors, guiding safety campaigns [@anderson2007kernel]. In India, K-Modes Clustering on 11,574 accidents in Dehradun revealed patterns when combined with association rule mining [@kumar2015data]. Similarly, in Medellín, Colombia, K-Means clustered zones by venue composition to analyze collision trends [@ocampo2020modelling]. This project analyzes datasets like New York City’s 20,000+ construction-related accidents to identify high-risk road segments, potentially due to poor lighting or road geometry, as seen in Iranian studies [@sadeghi2024identifying]. Results can guide interventions like improved signage or traffic management.
 
 ## Variations of K-Means
 
@@ -84,13 +85,13 @@ MapReduce K-Means: Processes large-scale accident data [@anchalia2013mapreduce].
 -   Silhouette-Weighted K-Means: Improves hotspot detection by weighting incidents [@semoglou2025silhouette].
 Limitations
 
-K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial (The K-Means Algorithm: A Comprehensive Survey and Performance Evaluation, Ahmed, Seraj & Islam, Electronics (2020); K-Means Clustering, Wikipedia (2025)).
+K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial [@ahmed2020kmeans], [@wikipedia2025kmeans].
 
 K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial [@ahmed2020kmeans].
 
 ### Project Impact
 
-By identifying accident hotspots and patterns, this project supports transportation authorities in prioritizing interventions, such as enhanced lighting or road redesign, to improve safety (Road accident prediction and model interpretation using a hybrid K-means and random forest algorithm approach, Discover Applied Sciences (2020)). The findings align with studies like those in London and Medellín, offering data-driven solutions to reduce traffic accidents [@anderson2007kernel].
+By identifying accident hotspots and patterns, this project supports transportation authorities in prioritizing interventions, such as enhanced lighting or road redesign, to improve safety [@author2020road]. The findings align with studies like those in London and Medellín, offering data-driven solutions to reduce traffic accidents [@anderson2007kernel].
 
 ## Methods
 The approach to K-Means Clustering for this capstone project involves preparing the data, selecting relevant variables, determining the ideal number of clusters, executing the clustering process, and analyzing the resulting groups to identify traffic accident patterns.
@@ -101,7 +102,7 @@ Data preparation begins by removing categorical variables (e.g., vehicle type), 
 
 ### Variable Selection
 
-Key variables are chosen, such as accident coordinates, time, weather, and severity, to highlight factors influencing traffic accident hotspots (A data mining framework to analyze road accident data, Journal of Big Data (2015)).
+Key variables are chosen, such as accident coordinates, time, weather, and severity, to highlight factors influencing traffic accident hotspots[@unknown2015data].
 
 ### Optimal Cluster Determination
 
