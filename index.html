@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Naveen Katepalli, Mrinal Mandapaka, Adiba Khan">
-<meta name="dcterms.date" content="2025-08-06">
+<meta name="dcterms.date" content="2025-08-07">
 
 <title>Clustering Traffic Accidents Using K-Means Clustering</title>
 <style>
@@ -3487,7 +3487,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 6, 2025</p>
+      <p class="date">August 7, 2025</p>
     </div>
   </div>
   
@@ -3505,7 +3505,7 @@ window.Quarto = {
 </section>
 <section id="project-overview" class="level2">
 <h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
-<p>This capstone project applies K-Means Clustering to analyze traffic accident data, aiming to identify high-risk areas (“hotspots”) and uncover contributing factors such as location, time, weather, or road conditions. By grouping similar accidents into clusters, the project provides actionable insights for transportation authorities to implement targeted safety measures, reducing accident frequency and severity (Road accident prediction and model interpretation using a hybrid K-means and random forest algorithm approach, Discover Applied Sciences (2020)).</p>
+<p>This capstone project explores the use of K-Means clustering, a popular unsupervised machine learning algorithm, to analyze patterns in historical U.S. traffic accident data from 1982 to 1988. The primary goal is to group states based on common characteristics of fatal traffic accidents, enabling a deeper understanding of regional risk profiles and behavioral trends.</p>
 </section>
 <section id="k-means-clustering-for-traffic-accident-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="k-means-clustering-for-traffic-accident-analysis">K-Means Clustering for Traffic Accident Analysis</h2>
@@ -3514,13 +3514,13 @@ window.Quarto = {
 <li><p>Centroid Initialization: Select K initial centroids, ideally using principal component analysis (PCA) to enhance convergence <span class="citation" data-cites="zubair2022efficient">(<a href="#ref-zubair2022efficient" role="doc-biblioref">Zubair et al. 2022</a>)</span>.</p></li>
 <li><p>Data Assignment: Assign each accident record to the nearest centroid based on Euclidean distance, using features like geographic coordinates, time, or weather <span class="citation" data-cites="fahlevi2020implementation">(<a href="#ref-fahlevi2020implementation" role="doc-biblioref">Fahlevi, Surya, and Rahmat 2020</a>)</span>.</p></li>
 <li><p>Centroid Update: Recalculate centroids as the mean of assigned points <span class="citation" data-cites="dubey2013infected">(<a href="#ref-dubey2013infected" role="doc-biblioref">Dubey et al. 2013</a>)</span>.</p></li>
-<li><p>Iteration: Repeat until clusters stabilize <span class="citation" data-cites="javadi2017classification">(<a href="#ref-javadi2017classification" role="doc-biblioref">Javadi et al. 2017</a>)</span>. This project uses datasets like New York City’s construction-related accidents or Indian traffic data to cluster incidents by spatial, temporal, or environmental factors, identifying high-risk zones <span class="citation" data-cites="workzone2020">(<a href="#ref-workzone2020" role="doc-biblioref">GitHub 2020</a>)</span>.</p></li>
+<li><p>Iteration: Repeat until clusters stabilize <span class="citation" data-cites="javadi2017classification">(<a href="#ref-javadi2017classification" role="doc-biblioref">Javadi et al. 2017</a>)</span>. This project uses datasets like New York City’s construction-related accidents or Indian traffic data to cluster incidents by spatial, temporal, or environmental factors, identifying high-risk zones.</p></li>
 </ul>
 <p>Determining the Optimal Number of Clusters Selecting the optimal K ensures meaningful accident clusters. Methods include:</p>
 <ul>
 <li><p>Elbow Method: Plots sum of squared errors (SSE) against K, with the “elbow” indicating the optimal number of clusters <span class="citation" data-cites="syakur2018integration">(<a href="#ref-syakur2018integration" role="doc-biblioref">Syakur et al. 2018</a>)</span>.</p></li>
 <li><p>Silhouette Method: Evaluates cluster quality using silhouette coefficients (-1 to 1), where 1 indicates well-separated clusters, 0 suggests overlap, and -1 implies misassignment <span class="citation" data-cites="rousseeuw1987silhouettes">(<a href="#ref-rousseeuw1987silhouettes" role="doc-biblioref">Rousseeuw 1987</a>)</span>. Weighted variants improve accuracy <span class="citation" data-cites="lai2024silhouette">(<a href="#ref-lai2024silhouette" role="doc-biblioref">Lai et al. 2024</a>)</span>.</p></li>
-<li><p>Gap Statistic: Compares within-cluster dispersion to a reference distribution <span class="citation" data-cites="tibshirani2001estimating">(<a href="#ref-tibshirani2001estimating" role="doc-biblioref">Tibshirani, Walther, and Hastie 2001</a>)</span>. The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification <span class="citation" data-cites="wikipedia2025kmeans">(<a href="#ref-wikipedia2025kmeans" role="doc-biblioref">Wikipedia contributors 2025a</a>)</span>, <span class="citation" data-cites="wikipedia2025silhouette">(<a href="#ref-wikipedia2025silhouette" role="doc-biblioref">Wikipedia contributors 2025b</a>)</span>.</p></li>
+<li><p>Gap Statistic: Compares within-cluster dispersion to a reference distribution <span class="citation" data-cites="tibshirani2001estimating">(<a href="#ref-tibshirani2001estimating" role="doc-biblioref">Tibshirani, Walther, and Hastie 2001</a>)</span>. The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification <span class="citation" data-cites="wikipedia2025kmeans">(<a href="#ref-wikipedia2025kmeans" role="doc-biblioref">Wikipedia contributors 2025</a>)</span>.</p></li>
 </ul>
 <section id="optimization-and-preprocessing" class="level3">
 <h3 class="anchored" data-anchor-id="optimization-and-preprocessing">Optimization and Preprocessing</h3>
@@ -3551,7 +3551,7 @@ window.Quarto = {
 <li><p>Genetic-Based K-Means (GBKM): Optimizes centroids via genetic algorithms <span class="citation" data-cites="chougule2015genetic">(<a href="#ref-chougule2015genetic" role="doc-biblioref">Chougule et al. 2015</a>)</span>. MapReduce K-Means: Processes large-scale accident data <span class="citation" data-cites="anchalia2013mapreduce">(<a href="#ref-anchalia2013mapreduce" role="doc-biblioref">Anchalia, Koundinya, and Srinath 2013</a>)</span>.</p></li>
 <li><p>Silhouette-Weighted K-Means: Improves hotspot detection by weighting incidents <span class="citation" data-cites="semoglou2025silhouette">(<a href="#ref-semoglou2025silhouette" role="doc-biblioref">Semoglou, Likas, and Pavlopoulos 2025</a>)</span>. Limitations</p></li>
 </ul>
-<p>K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial <span class="citation" data-cites="ahmed2020kmeans">(<a href="#ref-ahmed2020kmeans" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>, <span class="citation" data-cites="wikipedia2025kmeans">(<a href="#ref-wikipedia2025kmeans" role="doc-biblioref">Wikipedia contributors 2025a</a>)</span>.</p>
+<p>K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial <span class="citation" data-cites="ahmed2020kmeans">(<a href="#ref-ahmed2020kmeans" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>.</p>
 <p>K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial <span class="citation" data-cites="ahmed2020kmeans">(<a href="#ref-ahmed2020kmeans" role="doc-biblioref">Ahmed, Seraj, and Islam 2020</a>)</span>.</p>
 <section id="project-impact" class="level3">
 <h3 class="anchored" data-anchor-id="project-impact">Project Impact</h3>
@@ -3563,31 +3563,38 @@ window.Quarto = {
 <p>The approach to K-Means Clustering for this capstone project involves preparing the data, selecting relevant variables, determining the ideal number of clusters, executing the clustering process, and analyzing the resulting groups to identify traffic accident patterns.</p>
 <section id="data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-preparation">Data Preparation</h3>
-<p>Data preparation begins by removing categorical variables (e.g., vehicle type), eliminating outliers (e.g., incorrect coordinates), and applying feature scaling (e.g., normalizing location or time data) to ensure consistency (Raykov et al. 2016).</p>
+<p>Data preparation begins by removing categorical variables (e.g., vehicle type), eliminating outliers (e.g., incorrect coordinates), and applying feature scaling (e.g., normalizing location or time data) to ensure consistency.</p>
 </section>
 <section id="variable-selection" class="level3">
 <h3 class="anchored" data-anchor-id="variable-selection">Variable Selection</h3>
-<p>Key variables are chosen, such as accident coordinates, time, weather, and severity, to highlight factors influencing traffic accident hotspots<span class="citation" data-cites="unknown2015data">(<a href="#ref-unknown2015data" role="doc-biblioref">Unknown 2015</a>)</span>.</p>
+<p>We have decided to cluster alcohol-related fatalities among teens and young populations as they are likely to drive under the influence. This age group is when they start consuming alcohol and also obtain their driver’s licenses. Therefore, we selected 5 variables:</p>
+<ul>
+<li><p>state</p></li>
+<li><p>year</p></li>
+<li><p>afatal (alcohol-related fatalities)</p></li>
+<li><p>fatal1517 (fatalities aged 15-17)</p></li>
+<li><p>fatal1820 (fatalities aged 18-20) <span class="citation" data-cites="unknown2015data">(<a href="#ref-unknown2015data" role="doc-biblioref">Unknown 2015</a>)</span>.</p></li>
+</ul>
 </section>
 <section id="optimal-cluster-determination" class="level3">
 <h3 class="anchored" data-anchor-id="optimal-cluster-determination">Optimal Cluster Determination</h3>
 <p>The optimal number of clusters is assessed using three techniques:</p>
 <ul>
-<li><p>Silhouette Coefficient: Evaluates how well each accident fits its cluster compared to others, with scores from -1 to 1 (1 indicating a good fit). It is calculated as (Shi et al. 2021): <span class="math display">\[S = \frac{b - a}{\max(a, b)}\]</span> where a is the average intra-cluster distance, and b is the minimum average distance to other clusters.</p></li>
-<li><p>Elbow Method: Plots within-cluster sum of squares (WCSS) against cluster numbers, selecting the point where the decrease rate slows. WCSS is defined as (Shi et al. 2021): <span class="math display">\[WCSS = \sum_{k=1}^{K} \sum_{x \in C_k} ||x - \mu_k||^2\]</span> where x is a data point, <span class="math inline">\(C_k\)</span> is the cluster, <span class="math inline">\(μ_k\)</span> is the centroid, and K is the total clusters.</p></li>
-<li><p>Gap Statistic: Compares within-cluster dispersion to a null reference to find the best K (Tibshirani, Walther &amp; Hastie 2001): <span class="math display">\[Gap_n(k) = E_n^*\{\log(W_k)\} - \log(W_k)\]</span></p></li>
+<li><p>Silhouette Coefficient: Evaluates how well each accident fits its cluster compared to others, with scores from -1 to 1 (1 indicating a good fit). It is calculated as: <span class="math display">\[S = \frac{b - a}{\max(a, b)}\]</span> where a is the average intra-cluster distance, and b is the minimum average distance to other clusters.</p></li>
+<li><p>Elbow Method: Plots within-cluster sum of squares (WCSS) against cluster numbers, selecting the point where the decrease rate slows. WCSS is defined as: <span class="math display">\[WCSS = \sum_{k=1}^{K} \sum_{x \in C_k} ||x - \mu_k||^2\]</span> where x is a data point, <span class="math inline">\(C_k\)</span> is the cluster, <span class="math inline">\(μ_k\)</span> is the centroid, and K is the total clusters.</p></li>
+<li><p>Gap Statistic: Compares within-cluster dispersion to a null reference to find the best K: <span class="math display">\[Gap_n(k) = E_n^*\{\log(W_k)\} - \log(W_k)\]</span></p></li>
 </ul>
 <p>where <span class="math inline">\(E_n\)</span> is the expected dispersion, n is sample size, and <span class="math inline">\(W_k\)</span> is within-cluster sum of squares.</p>
 </section>
 <section id="clustering-process" class="level3">
 <h3 class="anchored" data-anchor-id="clustering-process">Clustering Process</h3>
-<p>K-Means Clustering is an iterative procedure (Fahlevi et al. 2020):</p>
+<p>K-Means Clustering is an iterative procedure :</p>
 <ul>
 <li><p>Set the number of clusters.</p></li>
 <li><p>Choose initial centroids randomly.</p></li>
 <li><p>Assign data points to the nearest centroid using Euclidean distance: <span class="math display">\[d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}\]</span></p></li>
 </ul>
-<p>where x and y are points (Ultsch &amp; Lötsch 2022).</p>
+<p>where x and y are points.</p>
 <ul>
 <li><p>Recalculate centroids as the mean of assigned points.</p></li>
 <li><p>Repeat until centroids stabilize.</p></li>
@@ -3985,11 +3992,6 @@ $ fatal1820 &lt;int&gt; 99, 108, 103, 100, 120, 127, 105, 62, 65, 72, 56, 66, 72
 
 </div>
 </div>
-<ul>
-<li><p>The bar plot visually confirms that Cluster 2 has significantly higher alcohol-related fatalities (475) compared to Cluster 3 (256) and Cluster 1 (81.8).</p></li>
-<li><p>This stark contrast underscores Cluster 2 as the primary target for alcohol-related interventions, as its fatalities are nearly six times higher than Cluster 1’s, highlighting the urgency of addressing urban hotspots.</p></li>
-<li><p>The distinct heights of the bars reinforce the clustering results, showing clear differentiation in risk levels across the three groups.</p></li>
-</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -4230,9 +4232,6 @@ Dubey, S. R., P. Dixit, N. Singh, and J. P. Gupta. 2013. <span>“Infected Fruit
 <div id="ref-fahlevi2020implementation" class="csl-entry" role="listitem">
 Fahlevi, Hendra, Rendi Surya, and Muhammad Rahmat. 2020. <span>“Implementation of k-Means Clustering for Scheduling Courses of Lecturers.”</span> <em>IOP Conference Series: Materials Science and Engineering</em> 821 (1): 012011.
 </div>
-<div id="ref-workzone2020" class="csl-entry" role="listitem">
-GitHub. 2020. <span>“Workzone-Collision-Analysis/Capstone.”</span> <a href="https://github.com/workzone-collision-analysis/capstone" class="uri">https://github.com/workzone-collision-analysis/capstone</a>.
-</div>
 <div id="ref-javadi2017classification" class="csl-entry" role="listitem">
 Javadi, S., S. M. Hashemy, K. Mohammadi, K. W. F. Howard, and A. Neshat. 2017. <span>“Classification of Aquifer Vulnerability Using k-Means Cluster Analysis.”</span> <em>Journal of Hydrology</em> 549: 27–37.
 </div>
@@ -4279,10 +4278,7 @@ Unknown. 2015. <span>“A Data Mining Framework to Analyze Road Accident Data.�
 Usami, S. 2014. <span>“Constrained k-Means Clustering and Its Application to Pattern Recognition.”</span> <em>The Japanese Journal of Behaviormetrics</em> 41 (1): 25–34.
 </div>
 <div id="ref-wikipedia2025kmeans" class="csl-entry" role="listitem">
-Wikipedia contributors. 2025a. <span>“K-Means Clustering.”</span> <a href="https://en.wikipedia.org/wiki/K-means_clustering" class="uri">https://en.wikipedia.org/wiki/K-means_clustering</a>.
-</div>
-<div id="ref-wikipedia2025silhouette" class="csl-entry" role="listitem">
-———. 2025b. <span>“Silhouette (Clustering).”</span> <a href="https://en.wikipedia.org/wiki/Silhouette_(clustering)" class="uri">https://en.wikipedia.org/wiki/Silhouette_(clustering)</a>.
+Wikipedia contributors. 2025. <span>“K-Means Clustering.”</span> <a href="https://en.wikipedia.org/wiki/K-means_clustering" class="uri">https://en.wikipedia.org/wiki/K-means_clustering</a>.
 </div>
 <div id="ref-yuan2019research" class="csl-entry" role="listitem">
 Yuan, C., and H. Yang. 2019. <span>“Research on k-Value Selection Method of k-Means Clustering Algorithm.”</span> <em>Journal of Multidisciplinary Scientific Journal</em> 2 (2): 226–35.

@@ -1,5 +1,5 @@
 ---
-title: "Traffic Accidents Using K-Means Clustering"
+title: "Clustering Traffic Accidents Using K-Means Clustering"
 subtitle: "Captone Project"
 author: "Abida Khan, Mrinal Mandapaka, Naveen Katepalli (Advisor: Dr. Cohen)"
 format:

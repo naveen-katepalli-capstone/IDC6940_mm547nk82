@@ -26,7 +26,8 @@ Slides: [slides.html](slides.html){target="_blank"}
 
 ## Project Overview
 
-This capstone project applies K-Means Clustering to analyze traffic accident data, aiming to identify high-risk areas ("hotspots") and uncover contributing factors such as location, time, weather, or road conditions. By grouping similar accidents into clusters, the project provides actionable insights for transportation authorities to implement targeted safety measures, reducing accident frequency and severity (Road accident prediction and model interpretation using a hybrid K-means and random forest algorithm approach, Discover Applied Sciences (2020)).
+This capstone project explores the use of K-Means clustering, a popular unsupervised machine learning algorithm, to analyze patterns in historical U.S. traffic accident data from 1982 to 1988. The primary goal is to group states based on common characteristics of fatal traffic accidents, enabling a deeper understanding of regional risk profiles and behavioral trends.
+
 
 ## K-Means Clustering for Traffic Accident Analysis
 
@@ -43,7 +44,7 @@ Recalculate centroids as the mean of assigned points [@dubey2013infected].
 
 -   Iteration: 
 Repeat until clusters stabilize [@javadi2017classification].
-This project uses datasets like New York City’s construction-related accidents or Indian traffic data to cluster incidents by spatial, temporal, or environmental factors, identifying high-risk zones [@workzone2020].
+This project uses datasets like New York City’s construction-related accidents or Indian traffic data to cluster incidents by spatial, temporal, or environmental factors, identifying high-risk zones.
 
   Determining the Optimal Number of Clusters
   Selecting the optimal K ensures meaningful accident clusters. Methods include:
@@ -53,7 +54,7 @@ This project uses datasets like New York City’s construction-related accidents
 -   Silhouette Method: Evaluates cluster quality using silhouette coefficients (-1 to 1), where 1 indicates well-separated clusters, 0 suggests overlap, and -1 implies misassignment [@rousseeuw1987silhouettes]. Weighted variants improve accuracy [@lai2024silhouette].
 
 -   Gap Statistic: Compares within-cluster dispersion to a reference distribution [@tibshirani2001estimating].
-The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification [@wikipedia2025kmeans], [@wikipedia2025silhouette].
+The project employs the Elbow and Silhouette methods to determine K, ensuring robust hotspot identification [@wikipedia2025kmeans].
 
 ### Optimization and Preprocessing
 
@@ -85,7 +86,7 @@ MapReduce K-Means: Processes large-scale accident data [@anchalia2013mapreduce].
 -   Silhouette-Weighted K-Means: Improves hotspot detection by weighting incidents [@semoglou2025silhouette].
 Limitations
 
-K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial [@ahmed2020kmeans], [@wikipedia2025kmeans].
+K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial [@ahmed2020kmeans].
 
 K-Means struggles with random centroid initialization, which may lead to inconsistent hotspots. Predefining K risks variability, and the algorithm falters with complex, heterogeneous accident data. Careful preprocessing, such as handling missing values and standardizing features, is crucial [@ahmed2020kmeans].
 
@@ -98,32 +99,43 @@ The approach to K-Means Clustering for this capstone project involves preparing 
 
 ### Data Preparation
 
-Data preparation begins by removing categorical variables (e.g., vehicle type), eliminating outliers (e.g., incorrect coordinates), and applying feature scaling (e.g., normalizing location or time data) to ensure consistency (Raykov et al. 2016).
+Data preparation begins by removing categorical variables (e.g., vehicle type), eliminating outliers (e.g., incorrect coordinates), and applying feature scaling (e.g., normalizing location or time data) to ensure consistency.
 
 ### Variable Selection
 
-Key variables are chosen, such as accident coordinates, time, weather, and severity, to highlight factors influencing traffic accident hotspots[@unknown2015data].
+We have decided to cluster alcohol-related fatalities among teens and young populations as they are likely to drive under the influence. This age group is when they start consuming alcohol and also obtain their driver's licenses. Therefore, we selected 5 variables:
+
+-   state
+
+-   year
+
+-   afatal (alcohol-related fatalities)
+
+-   fatal1517 (fatalities aged 15-17)
+
+-   fatal1820 (fatalities aged 18-20)
+[@unknown2015data].
 
 ### Optimal Cluster Determination
 
 The optimal number of clusters is assessed using three techniques:
 
--   Silhouette Coefficient: Evaluates how well each accident fits its cluster compared to others, with scores from -1 to 1 (1 indicating a good fit). It is calculated as (Shi et al. 2021):
+-   Silhouette Coefficient: Evaluates how well each accident fits its cluster compared to others, with scores from -1 to 1 (1 indicating a good fit). It is calculated as:
 $$S = \frac{b - a}{\max(a, b)}$$
 where a is the average intra-cluster distance, and b is the minimum average distance to other clusters.
 
--   Elbow Method: Plots within-cluster sum of squares (WCSS) against cluster numbers, selecting the point where the decrease rate slows. WCSS is defined as (Shi et al. 2021): 
+-   Elbow Method: Plots within-cluster sum of squares (WCSS) against cluster numbers, selecting the point where the decrease rate slows. WCSS is defined as: 
 $$WCSS = \sum_{k=1}^{K} \sum_{x \in C_k} ||x - \mu_k||^2$$
 where x is a data point, $C_k$ is the cluster, $μ_k$ is the centroid, and K is the total clusters.
 
--   Gap Statistic: Compares within-cluster dispersion to a null reference to find the best K (Tibshirani, Walther & Hastie 2001):
+-   Gap Statistic: Compares within-cluster dispersion to a null reference to find the best K:
  $$Gap_n(k) = E_n^*\{\log(W_k)\} - \log(W_k)$$
  
 
  where $E_n$ is the expected dispersion, n is sample size, and $W_k$ is within-cluster sum of squares.
 
 ### Clustering Process
-K-Means Clustering is an iterative procedure (Fahlevi et al. 2020):
+K-Means Clustering is an iterative procedure :
 
 -   Set the number of clusters.
 
@@ -132,7 +144,7 @@ K-Means Clustering is an iterative procedure (Fahlevi et al. 2020):
 -   Assign data points to the nearest centroid using Euclidean distance: 
 $$d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$$
 
-where x and y are points (Ultsch & Lötsch 2022).
+where x and y are points.
 
 -   Recalculate centroids as the mean of assigned points.
 
@@ -377,13 +389,6 @@ cluster_summary %>%
   kable_styling(full_width = FALSE, position = "center")
 
 ```
-
-
--   The bar plot visually confirms that Cluster 2 has significantly higher alcohol-related fatalities (475) compared to Cluster 3 (256) and Cluster 1 (81.8).
-
--   This stark contrast underscores Cluster 2 as the primary target for alcohol-related interventions, as its fatalities are nearly six times higher than Cluster 1’s, highlighting the urgency of addressing urban hotspots.
-
--   The distinct heights of the bars reinforce the clustering results, showing clear differentiation in risk levels across the three groups.
 
 
 ```{r}
